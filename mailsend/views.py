@@ -2,6 +2,7 @@ from django.core.mail import EmailMessage
 from selenium import webdriver
 from django.http import HttpResponse
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 def send_email():
     # Open the browser
@@ -39,11 +40,14 @@ def send_email():
     captcha_code.send_keys("GNFPYC")
 
     # Submit the form
-    submit_button = driver.find_element(By.CLASS_NAME, "lRwqcd")
-    submit_button.click()
+    submit_button = driver.find_element(By.XPATH, "//*[@class='uArJ5e UQuaGc Y5sE8d VkkpIf QvWxOd']")
+    action = ActionChains(driver)
+    action.move_to_element(submit_button).click().perform()
+
+    time.sleep(5)
 
     # Wait for the confirmation page to load
-    time.sleep(5)
+    #time.sleep(10)
 
     # Take a screenshot of the confirmation page
     driver.save_screenshot("confirmation_page.png")
@@ -52,7 +56,7 @@ def send_email():
     driver.quit()
     email_subject = "Python (Selenium) Assignment - Nakshatra Bansal"
     email_body = """Please find the screenshot attached.
-                    Github repo:- https://github.com/naksh2004/email_service
+Github repo:- https://github.com/naksh2004/email_service
                  """
     from_email = "naksh2904@gmail.com"
     to_email = ["bansalyash179@gmail.com","tech@themedius.ai", "HR@themedius.ai"]
