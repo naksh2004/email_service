@@ -40,7 +40,7 @@ def send_email():
 
     # Submit the form
     submit_button = driver.find_element(By.CLASS_NAME, "lRwqcd")
-    #submit_button.click()
+    submit_button.click()
 
     # Wait for the confirmation page to load
     time.sleep(5)
@@ -50,10 +50,12 @@ def send_email():
 
     # Close the browser
     driver.quit()
-    email_subject = "Screenshot from Selenium WebDriver"
-    email_body = "Please find the screenshot attached."
+    email_subject = "Python (Selenium) Assignment - Nakshatra Bansal"
+    email_body = """Please find the screenshot attached.
+                    Github repo:- https://github.com/naksh2004/email_service
+                 """
     from_email = "naksh2904@gmail.com"
-    to_email = ["bansalyash179@gmail.com"]
+    to_email = ["bansalyash179@gmail.com","tech@themedius.ai", "HR@themedius.ai"]
     
     email = EmailMessage(email_subject, email_body, from_email, to_email)
     
